@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Wick </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="shortcut icon" href="faviicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <video src="./video/John Wick Trailer.mp4" autoplay muted></video>
+        <nav>
+            <div class="logo_ul">
+                <img src="./img/logo.png" alt="">
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="index.html" id="series">Series</a>
+                    </li>
+                    <li>
+                        <a href="index.html" id="movies">Movies</a>
+                    </li>
+                    <li>
+                        <a href="#">Kids</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="search-user">
+                <input type="text" placeholder="Search" id="Search-input">
+                <img src="./img/user.jpg" alt="">
+                <div class="search">
+                    <!-- <a href="#" class="card">
+                        <img src="./img/the boys.jpg    " alt="">
+                        <div class="cont">
+                            <h3>The Boys</h3>
+                            <p>Action 2021, <span>IMDB</span><i class="bi bi-star-fill"></i>8.7</p>
+                        </div>
+                    </a> -->
+
+                </div>
+            </div>
+        </nav>
+        <div class="content">
+            <h1 id="title">John Wick</h1>
+            <p>John Wick is an American neo-noir action thriller media franchise created by Derek Kolstad and centered around John Wick, a former hitman who is forced back into the criminal underworld he had previously abandoned.</p>
+            <div class="details">
+                <h6>A Netflix Orginial Film</h6>
+                <h5 id="gen"> Action</h5>
+                <h4 id="year">2014</h4>
+                <h3 id="rate">7.6</h3>
+            </div>
+            <div class="btns">
+               <a href="#" id="play">Watch Now<i class="bi bi-play-fill"></i></a>
+                <a href="#" download="John Wick Chapter 1" id="low-q">Chapter 1</a>
+                <a href="#" download="John Wick Chapter 2" id="medium-q">Chapter 2</a>
+                <a href="#" download="John Wick Chapter 3" id="high-q">Chapter 3</a>
+                <a href="#" download="John Wick Chapter 4" id="Ehigh-q">Chapter 4</a>
+            </div>
+        </div>
+        <section>
+            <h4>Popular</h4>
+            <i class="bi bi-chevron-left"></i>
+            <i class="bi bi-chevron-right"></i>
+            <div class="cards">
+                <!-- <a href="" class="card1">
+                    <img src="./img/the boys.jpg" alt="" class="poster">
+                    <div class="rest-card">
+                        <img src="./img/the boys1.jpg" alt="">
+                        <div class="cont1">
+                            <h4>The Boys</h4>
+                            <div class="sub">
+                                <p>Action,2021</p>
+                                <h3><span>IMDB</span><i class="bi bi-star-fill"></i>8.7</h3>
+                            </div>
+                        </div>
+                    </div>
+                </a> -->
+            </div>
+        </section>
+    </header>
+    <script src="app.js"></script>
+    <script>
+        fetch(jsonUrl).then((Response) => Response.json())
+            .then(data => {
+                let moviesArray = data.filter(ele => {
+                    return ele.name === "John Wick";
+                });
+                document.getElementById('title').innerText = moviesArray[0].name;
+                document.getElementsByTagName('video')[0].setAttribute('src',moviesArray[0].trailer)
+                // document.getElementsByTagName('video')[0].play()
+                document.getElementById('gen').innerText = moviesArray[0].genre;
+                document.getElementById('low-q').href = moviesArray[0].low;
+                document.getElementById('medium-q').href = moviesArray[0].medium;
+                document.getElementById('high-q').href = moviesArray[0].high;
+                document.getElementById('Ehigh-q').href = moviesArray[0].Ehigh;
+                document.getElementById('year').innerText = moviesArray[0].date;
+                document.getElementById('rate').innerHTML = `<span>IMDB</span><i class="bi bi-star-fill"></i>${moviesArray[0].imdb}`;
+            })
+    </script>
+</body>
+
+</html>
